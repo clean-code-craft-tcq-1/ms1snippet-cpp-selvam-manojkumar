@@ -15,7 +15,7 @@ TEST_CASE("reports error when current jumps abruptly") {
   REQUIRE(validateCurrentreadings(currentReadings, numOfCurReadings) == false);
 }
 
-TEST_CASE("reports error when valid data is passed") {
+TEST_CASE("reports error when invalid data is passed") {
   double * currentReadings = NULL;
   REQUIRE(validateCurrentreadings(currentReadings, 0) == false);
 }
