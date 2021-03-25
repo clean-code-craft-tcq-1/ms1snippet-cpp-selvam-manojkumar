@@ -21,8 +21,9 @@ bool iterateReadings(double* values, int numOfValues, float threshold)
 	return true;
 }
 
-bool validate_parameter_readings(double* values, int numOfValues, float threshold) {
-	if (numOfValues == 0)
+bool validate_parameter_readings(double* values, int numOfValues, float threshold)
+{
+	if ((values== NULL) || (numOfValues == 0))
 		return false;
 	else
 	{
@@ -31,10 +32,12 @@ bool validate_parameter_readings(double* values, int numOfValues, float threshol
 }
 
 
-bool validateSOCreadings(double* values, int numOfValues) {
+bool validateSOCreadings(double* values, int numOfValues)
+{
 	return validate_parameter_readings(values, numOfValues, SOC_THRESHOLD);
 }
 
-bool validateCurrentreadings(double* values, int numOfValues) {
+bool validateCurrentreadings(double* values, int numOfValues) 
+{
 	return validate_parameter_readings(values, numOfValues, CURRENT_THRESHOLD);
 }
