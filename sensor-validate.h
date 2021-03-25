@@ -4,7 +4,7 @@
 
 bool iterateReadings(double* values, int numOfValues, float threshold);
 
-bool isRangeViolated(double value, double nextValue, double maxDelta);
+bool isSurgeViolated(double value, double nextValue, double maxDelta);
 
 bool validateSOCreadings(double* values, int numOfValues);
 
