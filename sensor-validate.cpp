@@ -15,7 +15,7 @@ bool iterateReadings(double* values, int numOfValues, float threshold)
 {
 	int lastButOneIndex = numOfValues - 1;
 	for (int i = 0; i < lastButOneIndex; i++) {
-		if (!isRangeViolated(values[i], values[i + 1], threshold)) {
+		if (!isSurgeViolated(values[i], values[i + 1], threshold)) {
 			return false;
 		}
 	}
