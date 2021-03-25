@@ -26,7 +26,7 @@ bool iterateReadings(double* values, int numOfValues, float threshold)
 bool validate_parameter_readings(double* values, int numOfValues, float threshold)
 {
 	if ((values== NULL) || (numOfValues == 0))
-		return false;
+		return true;
 	else
 	{
 		return iterateReadings(values,  numOfValues, threshold);
