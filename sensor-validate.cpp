@@ -1,28 +1,40 @@
 #include "sensor-validate.h"
+#include <iostream>
+#include <assert.h>
 
-bool _give_me_a_good_name(double value, double nextValue, double maxDelta) {
+
+bool isRangeViolated(double value, double nextValue, double maxDelta) {
   if(nextValue - value > maxDelta) {
     return false;
   }
   return true;
 }
 
+bool iterateReadings(double* values, int numOfValues, float threshold)
+{
+	int lastButOneIndex = numOfValues - 1;
+	for (int i = 0; i < lastButOneIndex; i++) {
+		if (!isRangeViolated(values[i], values[i + 1], threshold)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool validate_parameter_readings(double* values, int numOfValues, float threshold) {
+	if (numOfValues == 0)
+		return false;
+	else
+	{
+		return iterateReadings(values,  numOfValues, threshold);
+	}
+}
+
+
 bool validateSOCreadings(double* values, int numOfValues) {
-  int lastButOneIndex = numOfValues - 1;
-  for(int i = 0; i < lastButOneIndex; i++) {
-    if(!_give_me_a_good_name(values[i], values[i + 1], 0.05)) {
-      return false;
-    }
-  }
-  return true;
+	return validate_parameter_readings(values, numOfValues, SOC_THRESHOLD);
 }
 
 bool validateCurrentreadings(double* values, int numOfValues) {
-  int lastButOneIndex = numOfValues - 1;
-  for(int i = 0; i < lastButOneIndex; i++) {
-    if(!_give_me_a_good_name(values[i], values[i + 1], 0.1)) {
-      return false;
-    }
-  }
-  return true;
+	return validate_parameter_readings(values, numOfValues, CURRENT_THRESHOLD);
 }
